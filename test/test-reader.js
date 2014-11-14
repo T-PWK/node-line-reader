@@ -30,7 +30,7 @@ describe('LineReader', function () {
                     assert.ifError(err);
                     assert.equal(line, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
                     done();
-                });
+                }, 1);
             });
 
             it('and the second line should start with \'Integer placerat risus sed velit\'', function (done) {
@@ -38,7 +38,7 @@ describe('LineReader', function () {
                     assert.ifError(err);
                     assert.equal(line, "Integer placerat risus sed velit vestibulum ultricies.");
                     done();
-                });
+                }, 2);
             });
 
             it('and the third line should start with \'Praesent ut diam nec sapien\'', function (done) {
@@ -46,41 +46,41 @@ describe('LineReader', function () {
                     assert.ifError(err);
                     assert.equal(line, "Praesent ut diam nec sapien fermentum ullamcorper.");
                     done();
-                });
+                }, 3);
             });
         });
 
-        // describe('should read line by line from the input file', function () {
-        //     var reader;
+        describe('should read line by line from the input file', function () {
+            var reader;
 
-        //     before(function () {
-        //         reader = new LineReader(path.join(__dirname, 'input.txt'));
-        //     });
+            before(function () {
+                reader = new LineReader(path.join(__dirname, 'input.txt'));
+            });
 
-        //     it('and return null after reading all lines', function (done) {
-        //         var keepReading = true;
-        //         var lines = [];
+            it('and return null after reading all lines', function (done) {
+                var keepReading = true;
+                var lines = [];
 
-        //         async.whilst(
-        //             function () { return keepReading; },
-        //             function (cb) {
-        //                 reader.nextLine(function (err, line) {
-        //                     assert.ifError(err);
-        //                     if (line === null) {
-        //                         keepReading = false;
-        //                     } else {
-        //                         lines.push(line);    
-        //                     }
-        //                     cb();
-        //                 });
-        //             },
-        //             function (err) {
-        //                 assert.ifError(err);
-        //                 done();
-        //             }
-        //         );
-        //     });
-        // });
+                async.whilst(
+                    function () { return keepReading; },
+                    function (cb) {
+                        reader.nextLine(function (err, line) {
+                            assert.ifError(err);
+                            if (line === null) {
+                                keepReading = false;
+                            } else {
+                                lines.push(line);    
+                            }
+                            cb();
+                        });
+                    },
+                    function (err) {
+                        assert.ifError(err);
+                        done();
+                    }
+                );
+            });
+        });
     });
 
 
