@@ -1,0 +1,24 @@
+{
+  "name": "node-line-reader",
+  "version": "0.0.1",
+  "description": "Reads lines of text from input stream",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/T-PWK/node-line-reader"
+  },
+  "keywords": [
+    "text",
+    "reader",
+    "line"
+  ],
+  "author": "Tom Pawlak <tompwk@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/T-PWK/node-line-reader/issues"
+  },
+  "homepage": "https://github.com/T-PWK/node-line-reader"
+}
