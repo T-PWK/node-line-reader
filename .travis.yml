@@ -5,6 +5,7 @@ node_js:
 notifications:
   email: false
 install:
+  - npm install
   - npm install -g istanbul
   - npm install -g mocha
   - npm install -g codeclimate-test-reporter
