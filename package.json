@@ -2,9 +2,9 @@
   "name": "node-line-reader",
   "version": "0.0.1",
   "description": "Reads lines of text from input stream",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "node test/test.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/T-PWK/node-line-reader/issues"
   },
-  "homepage": "https://github.com/T-PWK/node-line-reader"
+  "homepage": "https://github.com/T-PWK/node-line-reader",
+  "devDependencies": {
+    "async": "^0.9.0"
+  }
 }
