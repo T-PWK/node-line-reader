@@ -4,7 +4,7 @@
   "description": "Reads lines of text from input stream",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "istanbul cover _mocha --report lcovonly"
   },
   "repository": {
     "type": "git",
