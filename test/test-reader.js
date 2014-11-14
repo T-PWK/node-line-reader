@@ -1,11 +1,11 @@
 var assert = require('assert');
 var async  = require('async');
 var path = require('path');
-var LineReader = require('../lib/reader');
+var LineReader = require('..').LineReader;
 
 describe('LineReader', function () {
     describe('constructor', function () {
-    
+
         it('should throw an exception if a specified file does not exist', function () {
             assert.throws(function () {
                 var reader = new LineReader('file-does-not-exist.txt');
@@ -62,20 +62,24 @@ describe('LineReader', function () {
                 var lines = [];
 
                 async.whilst(
-                    function () { return keepReading; },
+                    function () {
+                        return keepReading;
+                    },
                     function (cb) {
                         reader.nextLine(function (err, line) {
                             assert.ifError(err);
                             if (line === null) {
                                 keepReading = false;
                             } else {
-                                lines.push(line);    
+                                lines.push(line);
                             }
                             cb();
                         });
                     },
                     function (err) {
                         assert.ifError(err);
+                        assert.equal(lines.length, 63);
+                        assert.equal(lines[62], "Quisque finibus eros nec faucibus laoreet.");
                         done();
                     }
                 );

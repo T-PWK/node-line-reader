@@ -2,7 +2,7 @@
   "name": "node-line-reader",
   "version": "0.0.1",
   "description": "Reads lines of text from input stream",
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
