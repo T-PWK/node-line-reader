@@ -30,7 +30,7 @@ describe('LineReader', function () {
                     assert.ifError(err);
                     assert.equal(line, "Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
                     done();
-                }, 1);
+                });
             });
 
             it('and the second line should start with \'Integer placerat risus sed velit\'', function (done) {
@@ -38,7 +38,7 @@ describe('LineReader', function () {
                     assert.ifError(err);
                     assert.equal(line, "Integer placerat risus sed velit vestibulum ultricies.");
                     done();
-                }, 2);
+                });
             });
 
             it('and the third line should start with \'Praesent ut diam nec sapien\'', function (done) {
@@ -46,7 +46,7 @@ describe('LineReader', function () {
                     assert.ifError(err);
                     assert.equal(line, "Praesent ut diam nec sapien fermentum ullamcorper.");
                     done();
-                }, 3);
+                });
             });
         });
 
