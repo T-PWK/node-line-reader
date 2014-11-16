@@ -5,8 +5,8 @@ var LineTransform = require('..').LineTransform;
 var LineFilter = require('..').LineFilter;
 
 
-function getStream(argument) {
-    return fs.createReadStream(join(__dirname, 'input.txt'));
+function getStream(name) {
+    return fs.createReadStream(join(__dirname, name || 'input.txt'));
 }
 
 describe('LineFilter', function () {
@@ -132,7 +132,61 @@ describe('LineFilter', function () {
             assert.equal(lines.length, 6);
             lines.forEach(function (line) {
                 assert(line.indexOf(' et ') > 0);
-            })
+            });
+        });
+    });
+
+    describe('matching lines except empty lines', function () {
+        var lines = [], transform = new LineTransform(),
+            filter = new LineFilter({ skipEmpty: true });
+
+        getStream('input-blanks.txt').pipe(transform).pipe(filter);
+
+        before(function (done) {
+            extractLinesOfText(lines, filter, done);
+        })
+
+        it('should return 11 lines: 10 with text and 1 blank (spaces only)', function () {
+            assert.equal(lines.length, 11);
+            lines.forEach(function (line) {
+                assert(line.length > 0);
+            });
+        });
+    });
+
+    describe('matching lines except blank lines', function () {
+        var lines = [], transform = new LineTransform(),
+            filter = new LineFilter({ skipBlank: true });
+
+        getStream('input-blanks.txt').pipe(transform).pipe(filter);
+
+        before(function (done) {
+            extractLinesOfText(lines, filter, done);
+        })
+
+        it('should return 13 lines: 10 with text and 3 empty', function () {
+            assert.equal(lines.length, 13);
+            lines.forEach(function (line) {
+                assert(line.length !== 2);
+            });
+        });
+    });
+
+    describe('matching lines except empty and empty lines', function () {
+        var lines = [], transform = new LineTransform(),
+            filter = new LineFilter({ skipEmpty: true, skipBlank: true });
+
+        getStream('input-blanks.txt').pipe(transform).pipe(filter);
+
+        before(function (done) {
+            extractLinesOfText(lines, filter, done);
+        })
+
+        it('should return 10 lines of text (no empty and no blank lines)', function () {
+            assert.equal(lines.length, 10);
+            lines.forEach(function (line) {
+                assert(line.length > 10);
+            });
         });
     });
 
