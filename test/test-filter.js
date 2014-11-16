@@ -118,6 +118,24 @@ describe('LineFilter', function () {
         });
     });
 
+    describe('matching lines with \' et \' text inside', function () {
+        var lines = [], transform = new LineTransform(),
+            filter = new LineFilter({ include: [/\bet\b/]});
+
+        getStream().pipe(transform).pipe(filter);
+
+        before(function (done) {
+            extractLinesOfText(lines, filter, done);
+        })
+
+        it('should return only 6 lines', function () {
+            assert.equal(lines.length, 6);
+            lines.forEach(function (line) {
+                assert(line.indexOf(' et ') > 0);
+            })
+        });
+    });
+
 
 });
 
