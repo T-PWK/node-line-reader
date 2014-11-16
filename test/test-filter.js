@@ -56,8 +56,64 @@ describe('LineFilter', function () {
         });
 
         it('should return only lines not starting with \'P\'', function () {
+            assert.equal(lines.length, 52);
             lines.forEach(function (line) {
                 assert.notEqual(line.indexOf('P'), 0);
+            });
+        });
+    });
+
+    describe('with several include and no exclude', function () {
+        var lines = [], transform = new LineTransform(),
+            filter = new LineFilter({ include: [/P/, /Sed/] });
+
+        getStream().pipe(transform).pipe(filter);
+
+        it('shoould generate \'data\' events for each line of text and \'end\' event', function (done) {
+            extractLinesOfText(lines, filter, done);
+        });
+
+        it('should return lines starting with \'P\' and \'Sed\'', function () {
+            assert.equal(lines.length, 16);
+            lines.forEach(function (line) {
+                assert(line.indexOf('P') === 0 || line.indexOf('Sed') === 0);
+            });
+        });
+    });
+
+    describe('with several excludes and no include', function () {
+        var lines = [], transform = new LineTransform(),
+            filter = new LineFilter({ exclude: [/P/ , /Sed/]});
+
+        getStream().pipe(transform).pipe(filter);
+
+        it('shoould generate \'data\' events for each line of text and \'end\' event', function (done) {
+            extractLinesOfText(lines, filter, done);
+        });
+
+        it('should return only lines not starting with \'P\' nor \'Sed\'', function () {
+            assert.equal(lines.length, 47);
+            lines.forEach(function (line) {
+                assert(line.indexOf('P') !== 0 && line.indexOf('Sed') !== 0);
+            });
+        });
+    });
+
+    describe('with some excludes and includes', function () {
+        var lines = [], transform = new LineTransform(),
+            filter = new LineFilter({ include: [/P/ , /Sed/], exclude: [/s\.$/] });
+
+        getStream().pipe(transform).pipe(filter);
+
+        it('shoould generate \'data\' events for each line of text and \'end\' event', function (done) {
+            extractLinesOfText(lines, filter, done);
+        });
+
+        it('should return only lines starting with \'P\' nor \'Sed\' and not ending with \'s.\'', function () {
+            assert.equal(lines.length, 11);
+            lines.forEach(function (line) {
+                assert(line.indexOf('P') === 0 || line.indexOf('Sed') === 0);
+                assert.equal(line.indexOf('s.', line.length - 2), -1);
             });
         });
     });
