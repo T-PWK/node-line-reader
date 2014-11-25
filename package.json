@@ -15,7 +15,7 @@
     "reader",
     "line"
   ],
-  "author": "Tom Pawlak <tompwk@gmail.com>",
+  "author": "Tom Pawlak <tompwk@gmail.com> (http://blog.tompawlak.org)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/T-PWK/node-line-reader/issues"
@@ -23,5 +23,8 @@
   "homepage": "https://github.com/T-PWK/node-line-reader",
   "devDependencies": {
     "async": "^0.9.0"
+  },
+  "engines": {
+    "node": ">=0.10"
   }
 }
