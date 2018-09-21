@@ -135,7 +135,7 @@ As [Stream 'close' event](http://nodejs.org/api/stream.html#stream_event_error):
 
 ## Author
 
-Writen by Tom Pawlak - [Blog](http://blog.tompawlak.org)
+Writen by Tom Pawlak - [Blog](https://blog.abelotech.com)
 
 ## License:
 
