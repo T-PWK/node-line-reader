@@ -1,6 +1,6 @@
 {
   "name": "node-line-reader",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Reads lines of text from input stream",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "reader",
     "line"
   ],
-  "author": "Tom Pawlak <tompwk@gmail.com> (http://blog.tompawlak.org)",
+  "author": "Tom Pawlak <tompwk@gmail.com> (https://blog.abelotech.com)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/T-PWK/node-line-reader/issues"
